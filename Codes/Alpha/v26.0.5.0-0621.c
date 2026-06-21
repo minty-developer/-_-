@@ -13,7 +13,7 @@
 
 // [---Define---]
 #define GAME_NAME "편의점에서 살아남기"
-#define GAME_VER "v26.0.4.0-0619"
+#define GAME_VER "v26.0.5.0-0621"
 
 // [---Enum---]
 typedef enum

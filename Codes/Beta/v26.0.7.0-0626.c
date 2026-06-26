@@ -139,28 +139,6 @@ Customer Customer_Book[] = {
 // [---Function---]
 
 /**
- * @brief 다음 날로
- * @details 다음 날로 넘어갑니다.
- */
-void NextDay(void)
-{
-    Day++;
-    Hour = 7;
-    conditions |= 1 << 1;
-
-    // 31일이 되면 즉시 엔딩으로 가고 함수 종료 (화면 꼬임 방지)
-    if (Day >= 31)
-    {
-        Hour = 0;
-        MoveScreen(SC_ENDING);
-        return;
-    }
-
-    // 31일이 아니면 다음날 연출 화면으로 이동
-    MoveScreen(SC_NEXTDAY);
-}
-
-/**
  * @brief 화면에 내용을 한 글자씩 출력하는 함수
  * 
  * @param Format 출력할 내용
@@ -221,6 +199,28 @@ void MoveScreen(Screen Target_SC)
     Before_Screen = Temp_SC;
     Menu_Pointer = 1;
     conditions |= 1 << 1;
+}
+
+/**
+ * @brief 다음 날로
+ * @details 다음 날로 넘어갑니다.
+ */
+void NextDay(void)
+{
+    Day++;
+    Hour = 7;
+    conditions |= 1 << 1;
+
+    // 31일이 되면 즉시 엔딩으로 가고 함수 종료 (화면 꼬임 방지)
+    if (Day >= 31)
+    {
+        Hour = 0;
+        MoveScreen(SC_ENDING);
+        return;
+    }
+
+    // 31일이 아니면 다음날 연출 화면으로 이동
+    MoveScreen(SC_NEXTDAY);
 }
 
 /**

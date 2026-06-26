@@ -167,6 +167,7 @@ void GetRandomCustomer(void)
         }
     }
 }
+
 /**
  * @brief 콘솔 텍스트의 글자색과 배경색을 변경하는 함수
  * @param color 색상 코드 값 (0 ~ 255)
@@ -204,7 +205,6 @@ void DrawScreen(void)
     switch (Current_Screen)
     {
     case SC_MAIN:
-    {
         SetColor(9);
         print("  _______________________________  ");
         printf(" /___________");
@@ -236,7 +236,6 @@ void DrawScreen(void)
         /* 색 롤백 */
         SetDefaultColor();
         break;
-    }
     case SC_HELP:
         SetColor(9);
         print("종합 키 설명");

@@ -21,12 +21,12 @@
 
 // --colors--
 
-#define COLOR_RESET "\x1b[30m"
+#define COLOR_RESET "\x1b[0m"
 #define COLOR_RED "\x1b[31m"
-#define COLOR_LIGHT_SKYBLUE "\x1b[96"
+#define COLOR_LIGHT_SKYBLUE "\x1b[96m"
 #define COLOR_LIGHT_BLUE "\x1b[94m"
 #define COLOR_BLUE "\x1b[34m"
-#define COLOR_LIGHT_YELLOW "\x1b[97m"
+#define COLOR_LIGHT_YELLOW "\x1b[93m"
 #define COLOR_YELLOW "\x1b[33m"
 #define COLOR_GREEN "\x1b[32m"
 
@@ -139,10 +139,10 @@ Customer Customer_Book[] = {
 // [---Function---]
 
 /**
- * @brief 화면에 내용을 한 글자씩 출력하는 함수
+ * @brief 화면에 텍스트를 출력하는 함수
  * 
  * @param Format 출력할 내용
- * @param ... 변수들
+ * @param ... 인자
  */
 void print(const char *Format, ...)
 {
@@ -152,7 +152,7 @@ void print(const char *Format, ...)
     // 2. 가변 인자 시작점 설정 (Format 변수 바로 뒤부터 인자로 인식)
     va_start(args, Format);
 
-    // 3. ✨ 핵심: printf 계열의 가변 인자 스트림을 그대로 받아 출력하는 함수
+    // 3. printf 계열의 가변 인자 스트림을 그대로 받아 출력하는 함수
     vprintf(Format, args);
 
     // 4. 가변 인자 정리
@@ -263,7 +263,7 @@ void DrawScreen(void)
     {
     case SC_MAIN:
         print(COLOR_LIGHT_BLUE "  _______________________________  ");
-        print(" /___________" COLOR_RESET "_________" COLOR_LIGHT_BLUE "___________\\ ");
+        print(COLOR_LIGHT_BLUE" /___________" COLOR_RESET "_________" COLOR_LIGHT_BLUE "___________\\ ");
         print(COLOR_LIGHT_BLUE "/" COLOR_RESET " |          | CS 25 |          | " COLOR_LIGHT_BLUE "\\");
         print("  |          ‾‾‾‾‾‾‾‾‾          |  ");
         print("  |                             |  ");
@@ -274,9 +274,9 @@ void DrawScreen(void)
         print("%s", GAME_VER);
         print("");
         /* 메뉴 */
-        print(Menu_Pointer == 1 ? COLOR_LIGHT_YELLOW : COLOR_RESET"%s 종합 키 설명", Menu_Pointer == 1 ? ">" : " ");
-        print(Menu_Pointer == 2 ? COLOR_LIGHT_YELLOW : COLOR_RESET"%s 게임 시작하기", Menu_Pointer == 2 ? ">" : " ");
-        print(Menu_Pointer == 3 ? COLOR_LIGHT_YELLOW : COLOR_RESET"%s 게임 종료하기", Menu_Pointer == 3 ? ">" : " ");
+        print("%s 종합 키 설명", Menu_Pointer == 1 ? COLOR_LIGHT_YELLOW">" : " ");
+        print("%s 게임 시작하기", Menu_Pointer == 2 ? COLOR_LIGHT_YELLOW">" : " ");
+        print("%s 게임 종료하기", Menu_Pointer == 3 ? COLOR_LIGHT_YELLOW">" : " ");
         break;
     case SC_HELP:
         print(COLOR_LIGHT_BLUE "종합 키 설명");
@@ -314,10 +314,10 @@ void DrawScreen(void)
         print("");
         print("");
         /* 메뉴 */
-        print(Menu_Pointer == 1 ? COLOR_LIGHT_YELLOW : COLOR_RESET "%s 영업 시작하기", Menu_Pointer == 1 ? ">" : " ");
-        print(Menu_Pointer == 2 ? COLOR_LIGHT_YELLOW : COLOR_RESET "%s 상태 확인하기", Menu_Pointer == 2 ? ">" : " ");
-        print(Menu_Pointer == 3 ? COLOR_LIGHT_YELLOW : COLOR_RESET "%s 다음날로", Menu_Pointer == 3 ? ">" : " ");
-        print(Menu_Pointer == 4 ? COLOR_LIGHT_YELLOW : COLOR_RESET "%s 홈화면으로", Menu_Pointer == 4 ? ">" : " ");
+        print("%s 영업 시작하기",Menu_Pointer == 1 ? COLOR_LIGHT_YELLOW">" : " ");
+        print("%s 상태 확인하기", Menu_Pointer == 2 ? COLOR_LIGHT_YELLOW">" : " ");
+        print("%s 다음날로", Menu_Pointer == 3 ? COLOR_LIGHT_YELLOW">" : " ");
+        print("%s 홈화면으로", Menu_Pointer == 4 ? COLOR_LIGHT_YELLOW">" : " ");
         print("");
         print("");
         print("");
@@ -349,8 +349,8 @@ void DrawScreen(void)
         print("현재시간: %s %d시", Hour > 12 ? "오후" : "오전", Hour);
         print("");
         print("");
-        print(Menu_Pointer == 1 ? COLOR_LIGHT_YELLOW : COLOR_RESET"%s 손님 받기", Menu_Pointer == 1 ? ">" : " ");
-        print(Menu_Pointer == 2 ? COLOR_LIGHT_YELLOW : COLOR_RESET"%s 영업 종료하기", Menu_Pointer == 2 ? ">" : " ");
+        print("%s 손님 받기",Menu_Pointer == 1 ? COLOR_LIGHT_YELLOW">" : " ");
+        print("%s 영업 종료하기", Menu_Pointer == 2 ? COLOR_LIGHT_YELLOW">" : " ");
         print("");
         break;
     case SC_GAME_CUSTOMER:
@@ -358,8 +358,8 @@ void DrawScreen(void)
         print("");
         print("");
         /* 메뉴 */
-        print(Menu_Pointer == 1 ? COLOR_LIGHT_YELLOW : COLOR_RESET "%s %s", Menu_Pointer == 1 ? ">" : " ", NowCustomer.Item.Answer1);
-        print(Menu_Pointer == 2 ? COLOR_LIGHT_YELLOW : COLOR_RESET "%s %s", Menu_Pointer == 2 ? ">" : " ", NowCustomer.Item.Answer2);
+        print("%s %s", Menu_Pointer == 1 ? COLOR_LIGHT_YELLOW">" : " ", NowCustomer.Item.Answer1);
+        print("%s %s", Menu_Pointer == 2 ? COLOR_LIGHT_YELLOW">" : " ", NowCustomer.Item.Answer2);
         print("");
         break;
     case SC_GAME_RESULT:
